@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram</title>
+
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><img src="/images/Instagram-Logo.png" alt="Instagram"></div>
+    <div class="profile-menu" onclick="toggleDropdown()">
+      <div class="user-greet">
+        <span id="username"> User</span></div>
+        <div>
+          <img src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png" id="profile_pic" alt="Profile" />
+          
+          <div class="dropdown" id="dropdownMenu">
+            <div class="profile-div"><a href="profile.html" class="dropdown-item">Profile</a></div>
+            <div class="logout-div"><button onClick="signout()" class="dropdown-item">Logout</button></div>
+          </div>
+        </div>
+     
+    </div>
+  </div>
+
+  <!-- Post Section -->
+  <h2 id="username" class="username"></h2>
+  <br><br><br>
+  <a href="post_add.html" class="post-btn">+</a>
+   <div class="posts" id="posts">
+   
+        
+    </div>
+
+  
+<!-- 
+  <a href="login.html">login</a>
+
+  <a href="signup.html">signup</a>
+
+   -->
+
+
+  <script src="js/index.js"></script>
+
+  <script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdownMenu");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  document.addEventListener("click", function (e) {
+    const menu = document.querySelector(".profile-menu");
+    if (!menu.contains(e.target)) {
+      document.getElementById("dropdownMenu").style.display = "none";
+    }
+  })
+  </script>
+
+</body>
+</html>

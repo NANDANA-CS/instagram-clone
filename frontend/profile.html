@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Profile</title>
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="navbar">
+        <div class="logo"><img src="/images/Instagram-Logo.png" alt="Instagram"></div>
+       <div class="logout"> <button class="logout-btn" onclick="signout()">Logout</button></div>
+    </div>
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img id="profile_pic" class="profile-pic" alt="Profile Picture" />
+      
+      <div class="profile-info">
+        <div class="top-row">
+          <h2 class="username" id="username">john_doe</h2>
+          <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+          <button class="edit-btn" onclick="deleteProfile()">Delete Profile</button>
+          
+        </div>
+
+        <div class="stats">
+          <span><strong id="num_posts">42</strong> posts</span>
+          <span><strong>1,845</strong> followers</span>
+          <span><strong>120</strong> following</span>
+        </div>
+
+        <div class="bio">
+          <strong id="under_name">John Doe</strong><br>
+           | Foodie 🍕 | Developer 💻|Travel ✈️<br>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Posts Grid -->
+    <div class="posts-grid" id="posts">
+      <!-- Post images will be loaded here -->
+    </div>
+  </div>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>
