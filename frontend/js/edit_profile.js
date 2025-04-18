@@ -1,9 +1,13 @@
 //get all the inpout filesds using id from html
 
+// let preview = document.getElementById('preview')
+// let username = document.getElementById('username')
+// let email = document.getElementById('email')
+// let phone = document.getElementById('phone')
+let edit_username = document.getElementById('edit_username')
+let edit_email = document.getElementById('edit_email')
+let edit_phone = document.getElementById('edit_phone')
 let preview = document.getElementById('preview')
-let username = document.getElementById('username')
-let email = document.getElementById('email')
-let phone = document.getElementById('phone')
 
 const id = localStorage.getItem('id')
 
