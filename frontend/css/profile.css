@@ -9,11 +9,11 @@ body {
     background-color: #fafafa;
 }
 
-.container {
+/* .container {
     max-width: 935px;
     margin: auto;
     padding: 20px;
-}
+} */
 
 .profile-header {
     display: flex;
@@ -45,7 +45,17 @@ body {
 
 .edit-btn {
     padding: 6px 12px;
-    background-color: #efefef;
+    background-color:rgb(65, 65, 212);
+    color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.del-btn{
+    padding: 6px 12px;
+    background-color:rgb(238, 72, 63);
+    color: #fff;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
     cursor: pointer;
@@ -55,6 +65,11 @@ body {
 .edit-btn:hover {
     background-color: #dbdbdb;
 }
+
+.del-btn:hover {
+    background-color: #dbdbdb;
+}
+
 
 .navbar {
     background: #fff;

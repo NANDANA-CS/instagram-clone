@@ -16,15 +16,16 @@ async function addPost(e){
     const description = document.getElementById('description').value
 
 
-    let id = localStorage.getItem('id') || "";
+    let userid = localStorage.getItem('id') || "";
 
-    if(!id){
+    if(!userid){
+        alert("user not logged in")
         return 
     }
 
-    console.log("idis",id)
+    
 
-    const response1 = await fetch(`/api/getUser/${id}`)
+    const response1 = await fetch(`/api/getUser/${userid}`)
 
     const user_data = await response1.json()
 
@@ -36,7 +37,7 @@ async function addPost(e){
 
 
 
-    let data = {username,post,description,profile_pic}
+    let data = {username,post,description,profile_pic,userid}
 
 
     let options = {

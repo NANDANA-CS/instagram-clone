@@ -17,7 +17,6 @@ app.use(express.static(frontEnd))
 app.use("/api",insta_routes)
 
 
-//connect database then start the server
 connection().then(()=>{
     app.listen(port,()=>{
         console.log(`Server Running on http://localhost:${port}`)

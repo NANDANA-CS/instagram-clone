@@ -45,7 +45,18 @@
     width: 100%;
     height: 80px;
   }
-
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .profile-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
   .profile-menu {
     position: relative;
     display: flex;
@@ -66,6 +77,10 @@
     color: #888;
   }
 
+  #username {
+    color: #d62976;
+  }
+  
   .dropdown {
     display: none;
     position: absolute;
@@ -74,7 +89,7 @@
     background: #fff;
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    width: 140px;
+    width: 50px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   }
 
@@ -101,10 +116,9 @@
 }
 
 .logout-div button{
-  background-color: #d62976;
+  background-color: #ff4d4d;
   color: white;
   padding: 5px 10px;
-  border-radius: 1px;
   width: 70px;
   height: 40px;
 

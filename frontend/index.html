@@ -64,6 +64,20 @@
     if (!menu.contains(e.target)) {
       document.getElementById("dropdownMenu").style.display = "none";
     }
+
+    const modal = document.getElementById('uploadModal')
+
+    function openModal() {
+      modal.style.display = 'flex'
+    }
+
+    function closeModal() {
+      modal.style.display = 'none'
+      document.getElementById('postImage').value = ''
+      document.getElementById('postDescription').value = ''
+    }
+
+
   })
   </script>
 

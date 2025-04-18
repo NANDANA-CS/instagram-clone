@@ -1,13 +1,8 @@
 
 let username = document.getElementById('username')
 let num_posts = document.getElementById('num_posts')
-
-//under post number name
 let under_name = document.getElementById('under_name')
-
-//profile picture
 let profile_pic = document.getElementById('profile_pic')
-//post div
 let posts = document.getElementById('posts')
 let str = ""
 
@@ -17,14 +12,13 @@ async function loadProfile() {
 
 
     try {
-        //fetch data using id
         const response1 = await fetch(`/api/getUser/${id}`)
 
         const data1 = await response1.json()
 
         username.textContent = data1.username
         //set undername texcontent
-        under_name.textContent = data1.username
+        // under_name.textContent = data1.username
 
         //change profile picture
         profile_pic.src = data1.profile_pic
@@ -62,7 +56,6 @@ async function loadProfile() {
 }
 loadProfile()
 
-//function edit profile
 
 function editProfile() {
 
@@ -90,12 +83,7 @@ async function deleteProfile() {
         if (response.status === 200) {
 
             alert("Profile Deleted Successfully")
-
-            //clear localstorage token and id
             localStorage.clear()
-
-            //now redirect to home page it will go in login page
-
             window.location.href = "/"
         }
     }
@@ -111,10 +99,17 @@ async function deleteProfile() {
 
 
 function signout() {
-
-    //clear id and token from localstorage
     localStorage.clear()
     alert("Logging out")
     window.location.href = "/"
 
 }
+
+document.addEventListener('click', function (e) {
+    const modal = document.getElementById('imageModal')
+    if (e.target === modal) {
+        modal.style.display = 'none'
+        document.getElementById('enlargedImage').src = ''
+        document.body.classList.remove('modal-open')
+    }
+})

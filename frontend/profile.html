@@ -20,21 +20,21 @@
       
       <div class="profile-info">
         <div class="top-row">
-          <h2 class="username" id="username">john_doe</h2>
+          <h2 class="username" id="username"></h2>
           <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
-          <button class="edit-btn" onclick="deleteProfile()">Delete Profile</button>
+          <button class="del-btn" onclick="deleteProfile()">Delete Profile</button>
           
         </div>
 
         <div class="stats">
-          <span><strong id="num_posts">42</strong> posts</span>
+          <span><strong id="num_posts"></strong> posts</span>
           <span><strong>1,845</strong> followers</span>
           <span><strong>120</strong> following</span>
         </div>
 
         <div class="bio">
-          <strong id="under_name">John Doe</strong><br>
-           | Foodie 🍕 | Developer 💻|Travel ✈️<br>
+          <strong id="under_name"></strong><br>
+           <!-- | Foodie 🍕 | Developer 💻|Travel ✈️<br> -->
         </div>
       </div>
     </div>
@@ -43,8 +43,14 @@
 
     <!-- Posts Grid -->
     <div class="posts-grid" id="posts">
-      <!-- Post images will be loaded here -->
+     
     </div>
+    <div class="image-modal" id="imageModal">
+      <div class="image-modal-content">
+        <img id="enlargedImage" src="" alt="Enlarged Post" />
+      </div>
+    </div>
+
   </div>
 
   <script src="js/profile.js"></script>

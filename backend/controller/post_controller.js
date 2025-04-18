@@ -8,15 +8,16 @@ export const addPost = async function addPost(req, res) {
 
     try {
 
-        const { username, post, description, profile_pic } = req.body
+        const { username, post, description, profile_pic,userid} = req.body
 
-        if (!username || !post || !description || !profile_pic) {
+        if (!username || !post || !description || !profile_pic || !userid) {
+            console.log("Missing fields:", { username, post, description, profile_pic, userid });
 
             return res.status(404).json({ message: "Please fill all the fileds" })
         }
 
 
-        const data = postSchema.create({ username, post, description, profile_pic })
+        const data = postSchema.create({ username, post, description, profile_pic,userid })
 
         res.status(201).json({ message: "Post Uploaded Successfully" })
 
