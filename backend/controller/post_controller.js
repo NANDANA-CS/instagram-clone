@@ -59,11 +59,7 @@ export const loadPosts = async function loadPosts(req, res) {
 
 
 export const getPost = async function getPost(req, res) {
-
-
     try {
-
-
         console.log("Inside get posts")
 
         let userid = req.params.id
@@ -75,14 +71,10 @@ export const getPost = async function getPost(req, res) {
         res.status(200).send(userData)
 
     }
-
     catch (err) {
-
-
         console.log(err)
         res.status(500).json({ message: err })
     }
-
 }
 
 

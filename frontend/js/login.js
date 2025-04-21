@@ -8,6 +8,28 @@ async function logIn(e){
 
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
+   
+
+
+    
+    
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+  
+ 
+
+
+    if (!emailRegex.test(email)) {
+        alert("Invalid email format.");
+        return;
+    }
+
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must be at least 6 characters, contain at least one letter and one number.");
+        return;
+    }
+   
 
 
     let data = {email,password}

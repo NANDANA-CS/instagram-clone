@@ -24,7 +24,6 @@ export const signUp = async function signUp(req, res) {
     const { profile_pic, username, email, phone, password } = req.body;
     if (!(profile_pic && username && email && phone && password)) {
       return res.status(400).json({ message: "Please Fill all the details" })
-
     }
     //hash the password
     bcrypt.hash(password, 10).then(async (hashed_pwd) => {

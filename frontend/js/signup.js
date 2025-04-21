@@ -13,7 +13,10 @@ document.getElementById('profile_pic').addEventListener('change',async(e)=>{
 async function signUp(e){
 
     e.preventDefault()
-
+    if (!profile_pic) {
+        alert("upload profile pic")
+        return
+    }
     let username = document.getElementById('username').value
 
     let email = document.getElementById('email').value
@@ -24,6 +27,39 @@ async function signUp(e){
 
     //confirm password
     let c_password = document.getElementById('cpassword').value
+
+
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const phoneRegex = /^[6-9]\d{9}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+
+    // ✅ VALIDATIONS
+    if (!usernameRegex.test(username)) {
+        alert("Username must be 3-20 characters, only letters, numbers, and underscores allowed.");
+        return;
+    }
+
+    if (!emailRegex.test(email)) {
+        alert("Invalid email format.");
+        return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must be at least 6 characters, contain at least one letter and one number.");
+        return;
+    }
+
+    if (password !== c_password) {
+        alert("Passwords do not match.");
+        return;
+    }
+
     
     //check password matching
     if(password!=c_password){

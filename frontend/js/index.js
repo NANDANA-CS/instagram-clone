@@ -7,61 +7,48 @@ let str = "";
 let username = document.getElementById('username');
 let profile_pic = document.getElementById('profile_pic');
 
+
+
 async function loadPosts() {
   try {
     const response = await fetch("http://localhost:3000/api/loadPosts", {
       headers: { "Authorization": `Bearer ${localStorage.getItem('token')}` }
     });
 
-    console.log(response);
     const data = await response.json();
-    console.log(data);
 
     if (response.status === 200) {
-      
       localStorage.setItem('id', data.userData._id);
-      // localStorage.setItem('profile', data.userData.profile_pic)
 
-      data.data.forEach(element => {
+      str = '';
+      const reverse = data.data.reverse();
+      reverse.forEach((element) => {
+
+        let imagesHTML = "";
+
+        if (Array.isArray(element.post)) {
+          imagesHTML = element.post.map(img =>
+            `<img class="post-image" src="${img}" alt="Post Image" />`
+          ).join("");
+        } else {
+          imagesHTML = `<img class="post-image" src="${element.post}" alt="Post Image" />`;
+        }
+
         str += `
-        <div class="post-section">
-          <div class="post-header">
-            <img src=${element.profile_pic} alt="User" />
-            <strong>${element.username}</strong>
-          </div>
-          <img class="post-image" src=${element.post} alt="Post Image" />
-          
-          
-          <div class="post-description">
-            ${element.description}
-          </div>
-        </div>`;
+          <div class="post-section">
+            <div class="post-header">
+              <img src="${element.profile_pic}" alt="User" />
+              <strong>${element.username}</strong>
+            </div>
+            ${imagesHTML}
+            <div class="post-description">${element.description}</div>
+          </div>`;
       });
 
       profile_pic.src = data.userData.profile_pic;
       posts.innerHTML = str;
       username.textContent = `${data.userData.username}`;
-
-      // handle heart icon toggles
-      const loveIcons = document.querySelectorAll(".loveIcon");
-
-      loveIcons.forEach(icon => {
-        let isFilled = false;
-
-        icon.addEventListener("click", () => {
-          isFilled = !isFilled;
-          if (isFilled) {
-            icon.setAttribute("fill", "red");
-            icon.classList.add("beat");
-          } else {
-            icon.setAttribute("fill", "none");
-            icon.classList.remove("beat");
-          }
-        });
-      });
-    }
-
-    else if (response.status === 403) {
+    } else if (response.status === 403) {
       window.location.href = "/login.html";
     }
 
@@ -70,8 +57,8 @@ async function loadPosts() {
   }
 }
 
-loadPosts();
 
+loadPosts();
 // signout function
 function signout() {
   alert("Are you sure you want to Logout");
@@ -79,12 +66,7 @@ function signout() {
   localStorage.removeItem("token");
   window.location.href = "/login.html";
 }
-
-
 async function addPost() {
-
-
-
   const description = document.getElementById('description').value
 
 
@@ -93,14 +75,12 @@ async function addPost() {
   if (!id) {
     return
   }
-
   console.log("idis", id)
-
   const response1 = await fetch(`/api/getUser/${id}`)
 
   const user_data = await response1.json()
 
-  console.log("userdat", user_data)
+  console.log("userdata", user_data)
 
 
   let username = user_data.username
@@ -119,9 +99,7 @@ async function addPost() {
     method: "POST",
     body: JSON.stringify(data)
   }
-
   try {
-
     const response = await fetch('/api/addPost', options)
 
     const data = await response.json()
@@ -137,20 +115,12 @@ async function addPost() {
 
       alert(data.message)
     }
-
   }
-
   catch (err) {
-
     console.log(err)
     alert(data.message)
   }
-
-
-
 }
-
-
 //convert image to base64
 function convertBase64(file) {
 
