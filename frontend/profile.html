@@ -5,54 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Profile</title>
   <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/profile.css" />
 </head>
 <body>
-
   <div class="container">
     <div class="navbar">
-        <div class="logo"><img src="/images/Instagram-Logo.png" alt="Instagram"></div>
-       <div class="logout"> <button class="logout-btn" onclick="signout()">Logout</button></div>
+      <div class="logo"><img src="/images/Instagram-Logo.png" alt="Instagram"></div>
+      <div class="homelogo"><img src="/images/home.icon.png" alt="" class="homelogoimg"></div>
+      <div class="logout"><button class="logout-btn" onclick="signout()">Logout</button></div>
     </div>
     
     <div class="profile-header">
       <img id="profile_pic" class="profile-pic" alt="Profile Picture" />
-      
       <div class="profile-info">
         <div class="top-row">
           <h2 class="username" id="username"></h2>
           <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
           <button class="del-btn" onclick="deleteProfile()">Delete Profile</button>
-          
         </div>
-
         <div class="stats">
           <span><strong id="num_posts"></strong><br> posts</span>
           <span><strong>1,845</strong><br>followers</span>
-          <span><strong>120</strong> <br>following</span>
+          <span><strong>120</strong><br>following</span>
         </div>
-
         <div class="bio">
-          <strong id="under_name"></strong><br>
-          
+          <strong id="under_name"></strong>
         </div>
       </div>
     </div>
 
     <hr />
 
-    
     <div class="posts-grid" id="posts">
-     
+      <!-- Posts will load here -->
     </div>
+    
     <div class="image-modal" id="imageModal">
       <div class="image-modal-content">
-        <img id="enlargedImage" src="" alt="Enlarged Post" />
+        <span class="close-modal" onclick="closeModal()">×</span>
+        <div class="swiper-container" id="postSwiper">
+          <div class="swiper-wrapper" id="swiperWrapper"></div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
       </div>
     </div>
-
   </div>
 
   <script src="js/profile.js"></script>
+  <!-- Swiper.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>

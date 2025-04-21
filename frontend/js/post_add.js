@@ -1,8 +1,20 @@
 let post = ""
 document.getElementById('post').addEventListener('change', async (e) => {
-    const post_img = e.target.files[0]
-    post = await convertBase64(post_img)
-    document.getElementById('preview').innerHTML = `<img width="200px" height="auto" src=${post}></img>`
+    // const post_img = e.target.files[0]
+    // post = await convertBase64(post_img)
+    // document.getElementById('preview').innerHTML = `<img width="200px" height="auto" src=${post}></img>`
+
+    const files = e.target.files
+    const previewContainer = document.getElementById('preview')
+    previewContainer.innerHTML = ''
+    for (let file of files) {
+        const base64 = await convertBase64(file);
+        const img = document.createElement('img');
+        img.src = base64;
+        img.style.width = '200px';
+        img.style.margin = '5px';
+        previewContainer.appendChild(img);
+    }
 })
 
 
@@ -13,6 +25,12 @@ async function addPost(e) {
 
     const description = document.getElementById('description').value
     const files = document.getElementById('post').files;
+
+    let post=[]
+    for(let file of files){
+        const base64=await convertBase64(file)
+        post.push(base64)
+    }
     if (!files.length) {
         alert("Please select at least one image");
         return;
@@ -38,8 +56,8 @@ async function addPost(e) {
     let profile_pic = user_data.profile_pic
 
 
-
-    let data = { username, post:postImages, description, profile_pic, userid }
+    
+    let data = { username, post: postImages, description, profile_pic, userid }
 
 
     let options = {
