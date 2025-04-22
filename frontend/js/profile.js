@@ -7,6 +7,10 @@ let str = "";
 
 let id = localStorage.getItem("id");
 
+function goHome() {
+  window.location.href = "index.html";
+}
+
 async function loadProfile() {
   try {
     if (!id) {

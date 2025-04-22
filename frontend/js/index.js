@@ -158,7 +158,7 @@ async function addPost() {
     return
   }
   console.log("idis", id)
-  const response1 = await fetch(`/ api / getUser / ${id} `)
+  const response1 = await fetch(`/api/getUser/${id} `)
 
   const user_data = await response1.json()
 
@@ -207,16 +207,11 @@ async function addPost() {
 function convertBase64(file) {
 
   return new Promise((resolve, reject) => {
-    //create object of file reader class
     const fileReader = new FileReader()
     fileReader.readAsDataURL(file)
-
-    //when reading is done
     fileReader.onload = () => {
       resolve(fileReader.result)
     }
-
-    //if error then reject with error
     fileReader.onerror = () => {
       reject(fileReader.error)
     }

@@ -9,11 +9,11 @@
     background-color: #fafafa;
   }
   
-  .container {
+  /* .container {
     max-width: 935px;
     margin: auto;
     padding: 20px;
-  }
+  } */
   
   .navbar {
     background: #fff;
@@ -27,16 +27,62 @@
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
+  .right-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .hamburg{
+    max-width: 30px;
+    height: auto;
+    cursor: pointer;
+  }
+  .homelogoimg{
+    max-width: 30px;
+  }
+  
   
   .logo img {
     max-width: 160px;
     height: auto;
   }
-  .homelogoimg{
-    max-width: 30px;
-    height: auto;
-    
+ 
+  
+
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    flex-direction: column;
+    padding: 10px;
+    min-width: 150px;
   }
+  
+  .dropdown button {
+    background-color: white;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .dropdown button:hover {
+    background-color: #f0f0f0;
+  }
+  
   .logout-btn {
     padding: 6px 12px;
     background-color: #ff4d4d;
@@ -56,7 +102,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    margin: 20px auto;
+    
     text-align: left;
   }
   
