@@ -21,9 +21,11 @@ async function loadPosts() {
       localStorage.setItem('id', data.userData._id);
 
       userId = data.userData._id
+      profile_pic.src = data.userData.profile_pic;
+      username.textContent = `${data.userData.username} `;
 
       str = '';
-      console.log(data.data[0].likes);
+      // console.log(data.data[0].likes);
       
       const reverse = data.data.reverse();
       reverse.forEach((element) => {
@@ -53,7 +55,7 @@ async function loadPosts() {
               </div>
             ${imagesHTML}
             <div class="post-like-comment">
-                <div class="post-like" onclick="like('${element._id}')"><img src="images/PairDrop_files_20250421_1350/${isLiked ? 'like.png' : 'nolike.png'}" alt="Like"><p>${element.likes.length}</p></div>
+                <div class="post-like" onclick="like('${element._id}')"><img src="images/PairDrop_files_20250421_1350/${isLiked ? 'like.png' : 'nolike.png'}" alt="Like"><span class="likecount">${element.likes.length}  </span></div>
                 <div class="post-comment"><img src="images/PairDrop_files_20250421_1350/comment.png"></div>
                 <div class="post-share"><img src="images/PairDrop_files_20250421_1350/shareicon.png"></div>
             </div>
@@ -64,9 +66,7 @@ async function loadPosts() {
           </div> `;
       });
 
-      profile_pic.src = data.userData.profile_pic;
       posts.innerHTML = str;
-      username.textContent = `${data.userData.username} `;
       enableCarousels();
     } else if (response.status === 403) {
       window.location.href = "/login.html";
@@ -101,9 +101,11 @@ async function like(postId) {
       const postDiv = Array.from(document.querySelectorAll('.post-like')).find(el => el.getAttribute('onclick') === `like('${postId}')`);
       if (postDiv) {
         const img = postDiv.querySelector('img');
+        const likeCount = postDiv.querySelector('span')
         // Check if userId is in the returned likes array or assume like/unlike based on message
-        const isLiked = data1.likes ? data1.likes.includes(userId) : data1.message.toLowerCase().includes('like');
+        const isLiked = data1.likes.includes(userId)
         img.src = isLiked ? "images/PairDrop_files_20250421_1350/like.png" : "images/PairDrop_files_20250421_1350/nolike.png";
+        likeCount.textContent = data1.likes.length + " "
       }
     } else {
       alert(data1.message || "Failed to like/unlike post");

@@ -170,14 +170,25 @@ body {
   top: -10px;
  
 }
-
+.likecount{
+  position: relative;
+  top: 6px;
+  right: -4px;
+}
 .post-like-comment div:hover {
   transform: scale(1.1);
 }
-
+.post-comment img{
+  position: relative;
+  top: 12px;
+}
 .post-like-comment img {
   width: 24px;
   height: 24px;
+}
+.post-share img{
+  position: relative;
+  top: 10px;
 }
 
 .post-like img[src*="like.png"] {
