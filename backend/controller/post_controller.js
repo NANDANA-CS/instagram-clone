@@ -3,31 +3,71 @@ import postSchema from "../models/post.model.js"
 import userSchema from "../models/user.model.js"
 
 
-export const addPost = async function addPost(req, res) {
+// export const addPost = async function addPost(req, res) {
+
+//     console.log(req.files);
+    
+
+//     try {
+
+//         const { username, post, description, profile_pic, userid } = req.body
+
+//         if (!username || !post || !description || !profile_pic || !userid) {
+//             console.log("Missing fields:", { username, post, description, profile_pic, userid });
+
+//             return res.status(404).json({ message: "Please fill all the fileds" })
+//         }
 
 
-    try {
+//         const data = await postSchema.create({ username, post, description, profile_pic, userid })
 
-        const { username, post, description, profile_pic,userid} = req.body
+//         res.status(201).json({ message: "Post Uploaded Successfully" })
 
-        if (!username || !post || !description || !profile_pic || !userid) {
-            console.log("Missing fields:", { username, post, description, profile_pic, userid });
+//     }
 
-            return res.status(404).json({ message: "Please fill all the fileds" })
-        }
+//     catch (err) {
+
+//         console.log(err)
+
+//         res.status(500).json({ message: err })
+//     }
+// }
+export const addPost = async function addPost(req,res){
+
+ 
+
+    try{
+
+       const files = req.files
+
+       const {username,description,profile_pic,userid} = req.body
 
 
-        const data = await postSchema.create({ username, post, description, profile_pic,userid })
+       if(!username ||!files || !description || !profile_pic || !userid ){
 
-        res.status(201).json({ message: "Post Uploaded Successfully" })
+        return res.status(404).json({message:"Please fill all the fileds"})
+       }
 
+
+       let post = []
+
+       for(let i=0;i<files.length;i++){
+ 
+         post.push(files[i].path)
+         
+       }
+          
+       const data = postSchema.create({username,post,description,profile_pic,userid})
+
+       res.status(201).json({message:"Post Uploaded Successfully"})
+       
     }
 
-    catch (err) {
+    catch(err){
 
         console.log(err)
 
-        res.status(500).json({ message: err })
+        res.status(500).json({message:err})
     }
 }
 
@@ -108,34 +148,32 @@ export const deleteProfile = async function deleteProfile(req, res) {
 
 export const likePost = async (req, res) => {
     try {
-      const { postId,userId } = req.body
-      
-  
-      if (!userId) {
-        return res.status(400).json({ message: "User ID is required" });
-      }
-  
-      const post = await postSchema.findById(postId);
-      if (!post) {
-        return res.status(404).json({ message: "Post not found" });
-      }
-  
-      // Check if user already liked the post
-      const liked = post.likes.includes(userId);
-  
-      if (liked) {
-        // Unlike: Remove userId from likes
-        post.likes = post.likes.filter((id) => id !== userId);
-        await post.save();
-        return res.status(200).json({ message: "Post unliked", likes: post.likes });
-      } else {
-        // Like: Add userId to likes
-        post.likes.push(userId);
-        await post.save();
-        return res.status(200).json({ message: "Post liked", likes: post.likes });
-      }
+        const { postId, userId } = req.body
+
+
+        if (!userId) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+
+        const post = await postSchema.findById(postId);
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+
+        const liked = post.likes.includes(userId);
+
+        if (liked) {
+            post.likes = post.likes.filter((id) => id !== userId);
+            await post.save();
+            return res.status(200).json({ message: "Post unliked", likes: post.likes });
+        } else {
+            post.likes.push(userId);
+            await post.save();
+            return res.status(200).json({ message: "Post liked", likes: post.likes });
+        }
     } catch (err) {
-      console.error("Error liking post:", err);
-      res.status(500).json({ message: "Server error" });
+        console.error("Error liking post:", err);
+        res.status(500).json({ message: "Server error" });
     }
-  };
+}

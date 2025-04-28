@@ -35,7 +35,7 @@ async function addPost(e) {
         alert("Please select at least one image");
         return;
     }
-    const postImages = await convertImagesToBase64(files);
+    // const postImages = await convertImagesToBase64(files);
     let userid = localStorage.getItem('id') || "";
 
     if (!userid) {
@@ -57,18 +57,41 @@ async function addPost(e) {
 
 
     
-    let data = { username, post: postImages, description, profile_pic, userid }
+
+        // Create FormData object
+        let formData = new FormData();
+
+        // let img_count = document.getElementById('post').files
+        
+        for (let i = 0; i < post.length; i++) {
+          formData.append("file", document.getElementById('post').files[i]);
+        }
+    
+        // Append other fields
+        formData.append("username", username);
+        formData.append("description", description);
+        formData.append("profile_pic", profile_pic);
+        formData.append("userid", userid);
+    
+        // Send request
+     
+    // let data = { username, post: postImages, description, profile_pic, userid }
 
 
-    let options = {
-        headers: { "Content-Type": "application/json" },
-        method: "POST",
-        body: JSON.stringify(data)
-    }
+    // let options = {
+    //     headers: { "Content-Type": "application/json" },
+    //     method: "POST",
+    //     body: JSON.stringify(data)
+    // }
 
     try {
 
-        const response = await fetch('/api/addPost', options)
+        // const response = await fetch('/api/addPost', options)
+
+        const response = await fetch('/api/addPost', {
+            method: "POST",
+            body: formData 
+          });
 
         const data = await response.json()
 
@@ -114,7 +137,7 @@ function convertBase64(file) {
 }
 
 // convert multiple images to base64
-async function convertImagesToBase64(files) {
-    const promises = Array.from(files).map(file => convertBase64(file));
-    return Promise.all(promises); // returns array of base64 strings
-}
+// async function convertImagesToBase64(files) {
+//     const promises = Array.from(files).map(file => convertBase64(file));
+//     return Promise.all(promises); // returns array of base64 strings
+// }

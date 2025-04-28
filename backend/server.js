@@ -8,13 +8,17 @@ env.config()
 
 const file_name = url.fileURLToPath(import.meta.url)
 const __dirname = dirname(file_name)
-const frontEnd = join(__dirname,"..","frontEnd")
+const frontEnd = join(__dirname,"..","frontend")
 const port = 3000
 
 const app = express()
 app.use(express.json({limit:"50mb"}))
 app.use(express.static(frontEnd))
 app.use("/api",insta_routes)
+
+app.use("/uploads",express.static(path.join(__dirname,"uploads")))
+
+
 
 
 connection().then(()=>{
